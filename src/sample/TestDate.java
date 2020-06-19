@@ -30,13 +30,24 @@ public class TestDate {
     }
 
     public TestDate AddMonths(int months) {
-        DateTime newDate = date.plusMonths(months);
-        return new TestDate(newDate.getMonthOfYear(), newDate.getDayOfMonth(), newDate.getYear());
-
+        try {
+            DateTime newDate = date.plusMonths(months);
+            return new TestDate(newDate.getMonthOfYear(), newDate.getDayOfMonth(), newDate.getYear());
+        }
+        catch (Exception e)
+        {
+            return new TestDate();//TODO:Make sure this meets the requrirements
+        }
     }
 
     public int DaysUntil(TestDate dat) {
-        return Days.daysBetween(date, dat.date).getDays();
+        try {
+            return Days.daysBetween(date, dat.date).getDays();
+        }
+        catch (Exception e)
+        {
+            return -1; //TODO:Make sure this meets the requrirements
+        }
     }
 
     public String ToString(String format) {
@@ -44,7 +55,7 @@ public class TestDate {
             ParsedDate parsed = new ParsedDate(date);
             return parsed.ToString(format);
         } catch (Exception e) {
-            return StandardToString("YYYYddMM");
+            return StandardToString("YYYYddMM"); //TODO:Make sure this meets the requrirements, it's already in assumption part of doc
         }
     }
 
